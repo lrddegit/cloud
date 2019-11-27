@@ -1,0 +1,43 @@
+server:
+  port: 8886
+
+spring:
+  profiles:
+    active: dev
+
+  application:
+    name: bl-user
+
+ribbon:
+  ReadTimeout: 60000
+  ConnectTimeout: 60000
+  OkToRetryOnAllOperations: true
+  MaxAutoRetriesNextServer: 1
+  MaxAutoRetries: 1
+  eureka:
+    enabled: true
+
+feign:
+  hystrix:
+    enabled: true
+  compression:
+    request:
+      enabled: true
+      mime-types: text/xml,application/xml,application/json
+      min-request-size: 2048
+    response:
+      enabled: true
+#服务降级的时间配置（全局）
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 30000
+
+
+
+
+
+

@@ -1,0 +1,36 @@
+server:
+  port: 8887
+
+spring:
+  profiles:
+    active: dev
+  application:
+    name: bl-zuul
+  servlet:
+    multipart:
+      max-file-size: 200MB
+      max-request-size: 200MB
+zuul:
+  routes:
+    bl-user:
+      path: /bl-user/**
+      serviceId: bl-user
+      sensitiveHeaders: "*"
+  host:
+    socket-timeout-millis: 60000
+    connect-timeout-millis: 60000
+  semaphore:
+    max-semaphores: 100
+  #不被路由的具体url
+  #ignored-patterns: /pt-app/downEventCalendar/
+  #不被路由的服务
+  #ignored-services:
+
+ribbon:
+  ReadTimeout: 60000
+  ConnectTimeout: 60000
+
+
+
+
+
